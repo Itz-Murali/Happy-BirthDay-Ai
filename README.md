@@ -15,3 +15,4 @@ A simple Happy Birthday webpage made using HTML, CSS, and JavaScript with a litt
 
 ## Credits
 Made with ❤️ using my ideas + AI assistance.
+now update 
