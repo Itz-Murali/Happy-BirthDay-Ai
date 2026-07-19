@@ -1,0 +1,710 @@
+ 
+@font-face {
+  font-family: 'Hackout';
+  src: url('Fonts/Hackout-Eaw5j.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+ .heart-outline {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      background: transparent !important;
+      border: none !important;
+      stroke: #ff86b6;
+      fill: none;
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 12px #ff86b6aa);
+      opacity: 0.75;
+    }
+#gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: opacity 1s ease;
+}
+.top-image {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  margin-top: 20px; /* thoda gap from top */
+}
+
+.top-image img {
+  max-width: 380px; /* responsive size */
+  height: auto;
+}
+
+.top-area {
+      width: 100%;
+      position: absolute;
+      top: 20%;
+      left: 0;
+  
+      text-align: center;
+      background: transparent;
+      padding: 15px 0;
+      
+    }
+
+    .top-msg {
+      
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      letter-spacing: 2px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .tw {
+      font-size: 0.8rem;
+       padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { border-color: rgba(255,255,255,0.75); }
+      51%, 100% { border-color: transparent; }
+    }
+
+.center {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn {
+    	
+    	font-family: 'Hackout', sans-serif;
+  padding: 10px 30px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 3px solid #ff00cc; /* Neon cyberpunk border */
+  border-radius: 50px;
+  cursor: pointer;
+  background: rgba(20, 20, 30, 0.3); /* Semi-transparent background */
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 8px #ff00cc, 0 0 12px #ff66ff; /* Neon glow */
+   animation: glow-border 2s ease-in-out infinite alternate;
+   text-glow 3.5s ease-in-out infinite alternate, flicker 3s infinite;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.btn:hover {
+	font-family: 'Hackout', sans-serif;
+  transform: scale(1.1) skewX(-2deg); /* Slight hologram skew */
+  border-color: transparent; /* Border becomes background */
+  background: linear-gradient(135deg, #ff00cc, #ff66ff, #ff0099);
+  color: #0ff; /* Neon cyan text */
+  text-shadow: 0 0 12px #0ff, 0 0 24px #00ffff;
+  box-shadow: 0 0 25px #ff00cc, 0 0 60px #ff33cc, 0 0 200px #ff66ff;
+}
+
+/* Neon border glowing animation */
+@keyframes glow-border {
+  from { border-color: #ff00cc; }
+  to   { border-color: #ff66ff; }
+}
+
+/* Glowing text pulse */
+@keyframes text-glow {
+  from { text-shadow: 0 0 8px #ff00cc, 0 0 16px #ff66ff; }
+  to   { text-shadow: 0 0 16px #ff33ff, 0 0 32px #ff66ff; }
+}
+
+/* Neon flicker effect (hologram-like) */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+/* Glitch effect layers */
+.btn::before, .btn::after {
+	font-family: 'Hackout', sans-serif;
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #0ff; /* Cyan glitch */
+  clip: rect(0, 0, 0, 0);
+}
+
+.btn::before {
+	font-family: 'Hackout', sans-serif;
+  animation: glitchTop 2.5s infinite linear alternate-reverse;
+  text-shadow: 2px -2px #ff00cc;
+}
+
+.btn::after {
+	font-family: 'Hackout', sans-serif;
+  animation: glitchBottom 3s infinite linear alternate-reverse;
+  text-shadow: -2px 2px #00ffff;
+}
+
+/* Glitch animations */
+@keyframes glitchTop {
+  0% { clip: rect(0, 900px, 0, 0); }
+  10% { clip: rect(20px, 9999px, 40px, 0); transform: translate(-2px, -2px); }
+  20% { clip: rect(40px, 9999px, 60px, 0); transform: translate(-1px, 2px); }
+  40% { clip: rect(10px, 9999px, 30px, 0); transform: translate(2px, -1px); }
+  60% { clip: rect(50px, 9999px, 80px, 0); transform: translate(-1px, 1px); }
+  80% { clip: rect(20px, 9999px, 40px, 0); transform: translate(1px, -2px); }
+  100% { clip: rect(0, 900px, 0, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip: rect(0, 900px, 0, 0); }
+  15% { clip: rect(60px, 9999px, 80px, 0); transform: translate(2px, 2px); }
+  30% { clip: rect(30px, 9999px, 60px, 0); transform: translate(-1px, 1px); }
+  45% { clip: rect(70px, 9999px, 100px, 0); transform: translate(1px, -1px); }
+  70% { clip: rect(20px, 9999px, 35px, 0); transform: translate(-2px, 2px); }
+  100% { clip: rect(0, 900px, 0, 0); }
+}
+
+
+  
+#LastBtnFinal {
+  opacity: 0;
+    z-index: 999999;
+  transition: opacity 0.6s ease;
+}
+
+#LastBtnFinal[style*="opacity: 1"] {
+  opacity: 1;
+}
+:root{
+    --modal-w: 520px;
+    --glass: rgba(255,255,255,0.06);
+    --soft-white: rgba(255,255,255,0.9);
+    --accentA: #ffc8dd;
+    --accentB: #bde0fe;
+    --accentC: #caffbf;
+  }
+
+  /* overlay (hidden by default) */
+  .fancy-overlay{
+    position:fixed; inset:0;
+    background: linear-gradient(180deg, rgba(3,6,23,0.55), rgba(6,10,30,0.7));
+    backdrop-filter: blur(8px) saturate(1.05);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .45s cubic-bezier(.2,.9,.2,1);
+    z-index:1200;
+      max-width: 100%;
+  }
+  .fancy-overlay.show{ opacity:1; pointer-events:auto; }
+
+ 
+  .fancy-modal {
+    max-width: 90%;
+    border-radius:20px;
+    height: auto;
+    position:relative;
+    transform-origin:center center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    box-shadow: 0 18px 50px rgba(2,8,23,0.7), 0 6px 18px rgba(0,0,0,0.45);
+    overflow:visible;
+    opacity:0; transform: translateY(24px) rotateX(8deg) scale(.96);
+    transition: transform .5s cubic-bezier(.2,.9,.2,1), opacity .45s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px);
+  }
+  .fancy-modal.show{
+    opacity:1; transform: translateY(0) rotateX(0deg) scale(1);
+  }
+
+  /* decorative animated border (conic gradient ring) */
+  /* REPLACE your old .fancy-modal::before with this static, non-rotating border */
+.fancy-modal::before{
+  content: "";
+  position: absolute;
+  inset: -2.5px;               /* ring outside the card */
+  border-radius: 22px;
+  padding: 2.5px;
+  /* pretty static conic gradient ring (no rotation) */
+  background: conic-gradient(
+    from 200deg at 50% 50%,
+    var(--accentA),
+    var(--accentB),
+    var(--accentC),
+    var(--accentA)
+  );
+  /* keep the ring as an outline by masking the inner area */
+  -webkit-mask:
+    linear-gradient(#000,#000) content-box,
+    linear-gradient(#000,#000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  filter: blur(6px) saturate(1.05);
+  opacity: .95;
+
+  /* IMPORTANT: no transform, no animation */
+  transform: none !important;
+  animation: none !important;
+  will-change: auto;
+  z-index: -1;
+}
+  @keyframes slowSpin { to { transform: rotate(366deg) scale(1.01); } }
+
+  /* inner card (subtle glass highlight) */
+  .fancy-inner{
+    border-radius:14px;
+    padding:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  /* close button (cute pill) */
+  .fancy-close{
+    position:absolute; top:12px; right:12px;
+    width:42px; height:34px; border-radius:10px;
+    border:none; cursor:pointer;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    color:var(--soft-white); font-weight:700; font-size:20px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: transform .18s ease;
+  }
+  .fancy-close:active { transform: scale(.96); }
+
+  /* heading + cute font-style */
+  .fancy-title{
+    font-family: "Poppins", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-weight:600;
+    font-size:1.05rem;
+    margin:0 0 8px 0;
+    letter-spacing:0.2px;
+    color: #f7fbff;
+  }
+  .fancy-sub{
+    font-size:0.92rem;
+    margin:0 0 14px 0;
+    color: rgba(255,255,255,0.82);
+    opacity:.95;
+  }
+
+  /* modal body + typewriter (types once each open) */
+  .fancy-body{ text-align:left; padding:6px 6px 10px; }
+/* tw-modal should wrap naturally and reserve space via hidden chars */
+.tw-modal{
+  display:inline-block;
+  white-space:pre-wrap;     /* preserve spaces/newlines, allow wrapping */
+  word-break:break-word;    /* break long words if needed */
+  border-right:2px solid rgba(255,255,255,0.95); /* caret while typing */
+  color:#fff;
+  font-weight:600;
+}
+
+/* caret off after typing */
+.tw-modal.typed{ border-right:none; }
+
+/* characters are present but invisible first -> full height reserved */
+.tw-modal .char{ opacity:0; }
+.tw-modal .char.show{ opacity:1; transition:opacity 0.01s linear; }
+@keyframes typingModal {
+  from { width: 0ch; }
+  to   { width: 100%; } /* cover full width, wrapping handled automatically */
+}
+  
+  
+  /* small footer decorative icons */
+  .fancy-footer{ display:flex; gap:8px; justify-content:center; margin-top:16px; opacity:.95; }
+  .dot{
+    width:10px; height:10px; border-radius:50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .dot.a{ background: linear-gradient(180deg,var(--accentA), #ffd1e3); }
+  .dot.b{ background: linear-gradient(180deg,var(--accentB), #d9f2ff); }
+  .dot.c{ background: linear-gradient(180deg,var(--accentC), #eaffd9); }
+
+  
+  
+  
+  .gallery-wrap {
+  position: fixed;
+  inset: 12vh 0 12vh 0;
+  display: flex;
+  flex-direction: column;  /* stack order: cube -> ui -> button */
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 2000;
+  pointer-events: auto;
+  transition: opacity .45s ease, transform .45s ease;
+  opacity: 0;
+  transform: translateY(-60px);
+}
+.gallery-wrap.show { opacity: 1; }
+
+.gallery-stage {
+  perspective: 1200px;
+  width: min(96vw, 570px);
+  height: min(78vw, 400px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom: 20px; /* gap niche buttons ke liye */
+}
+
+/* cube same as before */
+.cube {
+  --size: min(70vw, 400px);
+  position: relative;
+  width: var(--size);
+  height: calc(var(--size) * 1);
+  transform-style: preserve-3d;
+  transition: transform 700ms cubic-bezier(.22,.9,.28,1);
+  cursor: grab;
+  user-select: none;
+}
+.cube:active { cursor: grabbing; }
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 30px rgba(2,8,23,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.face1 { transform: rotateY(0deg)   translateZ(calc(var(--size) * 0.5)); }
+.face2 { transform: rotateY(90deg)  translateZ(calc(var(--size) * 0.5)); }
+.face3 { transform: rotateY(180deg) translateZ(calc(var(--size) * 0.5)); }
+.face4 { transform: rotateY(-90deg) translateZ(calc(var(--size) * 0.5)); }
+.face::after {
+  content: "";
+  position:absolute; inset:0;
+  border-radius:14px;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+}
+
+/* gallery ui now normal position */
+.gallery-ui {
+  display:flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.gallery-ui button {
+  background: linear-gradient(135deg,#ff9ecb,#8fd3ff);
+  border: none;
+  padding: 10px 14px;
+  font-size: 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  color:#111;
+  cursor: pointer;
+}
+
+
+
+
+@font-face {
+      font-family: 'Vampire';
+      src: url('Fonts/vampire.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    
+    .typewriter {
+      font-family: 'Pacifico', sans-serif;
+        display: flex; 
+        justify-content: center;  /* horizontally center */
+  align-items: center;
+      /*
+      font-family: 'Vampire', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      */
+      color: #fff;               /* white text as requested */
+      
+  width: 100%;
+    height: 90px;
+      text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,   /* blue outer glow */
+    0 0 30px #fff;
+
+  
+}
+
+.typewriter span {
+  font-size: 1.6rem;
+  
+        
+}
+
+
+/* Cyberpunk neon button */
+.Lbtn {
+  position: absolute;
+  padding: 16px 35px;
+  bottom: 50px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255,255,255,0.06);             /* semi-transparent glass */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, color .2s ease, background .35s ease;
+  text-shadow: 0 0 6px rgba(255,45,149,0.95), 0 0 14px rgba(122,0,255,0.7); /* inner glowing text */
+  -webkit-tap-highlight-color: transparent;
+  /* keep layout same (no left/top changes) so "other things same" */
+}
+
+/* Neon external border glow (animated) */
+.Lbtn::before {
+  content: "";
+  position: absolute;
+  inset: -3px;                        /* make glow sit outside the button */
+  z-index: 0;
+  border-radius: 44px;
+  background: linear-gradient(45deg, #ff2d95, #7a00ff, #00eaff, #00ff9d);
+  background-size: 200% 200%;
+  filter: blur(8px);
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  animation: neonMove 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Subtle glossy interior layer */
+.Lbtn::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  border-radius: 40px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  pointer-events: none;
+}
+
+/* Keep the text on top so it glows "inside" the button */
+.Lbtn .btn-inner {
+  position: relative;
+  font-size: 1.1rem;
+  z-index: 2;
+  display: inline-block;
+  transition: color .25s ease, text-shadow .25s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover: convert border color into the button background, stronger shadows, and glowing text */
+.Lbtn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(122,0,255,0.35), 0 4px 18px rgba(255,45,149,0.25);
+  background: linear-gradient(90deg, #ff2d95, #7a00ff, #00eaff); /* border becomes background */
+}
+
+/* On hover fade the outer blurred border a bit (it visually "moves in" to become the bg) */
+.Lbtn:hover::before {
+  opacity: 0;            /* we hide the outer blur because bg now carries the color */
+  transform: scale(0.98);
+  filter: blur(6px);
+}
+
+/* Hover text color + inner glow change */
+.Lbtn:hover .btn-inner {
+  color: #00ffd5;
+  text-shadow: 0 0 8px rgba(0,255,213,0.95), 0 0 24px rgba(122,0,255,0.8);
+}
+
+/* Keyboard accessible focus */
+.Lbtn:focus-visible {
+  outline: 2px solid rgba(0,255,213,0.35);
+  outline-offset: 4px;
+}
+
+/* Neon animation */
+@keyframes neonMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.Gbtn {
+  position: relative;
+  padding: 12px 30px;
+  top: -10px;
+  border: 2px solid cyan;  /* Neon Cyberpunk Border */
+  border-radius: 40px;
+  cursor: pointer;
+  color: cyan;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 40px cyan; /* Glowing text */
+  
+ transition: all 0.4s ease;
+  font-size: 16px;
+  font-weight: italic;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+}
+
+/* Hover Effects */
+.Gbtn:hover {
+  background: cyan; /* Border color becomes background color */
+  color: white;  /* Invert text color for contrast */
+  text-shadow: 0 0 20px white;
+  box-shadow: 0 0 25px cyan, 0 0 50px cyan;
+  
+}
+
+/* Optional Glowing Animation for cyberpunk effect */
+
+/* ---------- Responsive tweaks for celebrate button, modal, gallery, last page ---------- */
+.top-area { top: 15%; padding: 10px 12px; box-sizing: border-box; }
+.top-msg { white-space: normal; word-break: break-word; }
+.tw { font-size: clamp(0.75rem, 2.4vw, 1.15rem); }
+
+.center { width: 100%; padding: 0 16px; box-sizing: border-box; text-align: center; }
+.btn { font-size: clamp(1rem, 3.4vw, 1.4rem); padding: 10px 22px; max-width: 90vw; }
+
+.fancy-modal { width: min(92vw, 560px); max-height: 88vh; overflow-y: auto; box-sizing: border-box; }
+.fancy-title { font-size: clamp(1.05rem, 3.6vw, 1.5rem); }
+.fancy-sub, .tw-modal { font-size: clamp(0.85rem, 2.8vw, 1.05rem); line-height: 1.55; }
+
+.Gbtn, .Lbtn { font-size: clamp(0.9rem, 3vw, 1.35rem); padding: 12px 24px; max-width: 90vw; }
+
+.typewriter { height: auto; min-height: 70px; padding: 0 14px; box-sizing: border-box; }
+.typewriter span { font-size: clamp(1.1rem, 4.4vw, 1.9rem); text-align: center; }
+
+.top-image img { max-width: min(85vw, 380px); }
+
+@media (max-width: 900px) {
+  .gallery-wrap { inset: 8vh 0 8vh 0; }
+  .gallery-stage { width: min(94vw, 480px); height: min(82vw, 360px); }
+  .cube { --size: min(76vw, 360px); }
+  .Lbtn { bottom: 24px; }
+}
+
+@media (max-width: 600px) {
+  .top-area { top: 12%; }
+  .gallery-wrap { inset: 6vh 0 6vh 0; }
+  .gallery-stage { width: 94vw; height: 82vw; margin-bottom: 14px; }
+  .cube { --size: 78vw; }
+  .gallery-ui button { padding: 8px 12px; font-size: 16px; }
+  .fancy-modal { padding: 18px; }
+  .Lbtn { position: static; margin-top: 16px; padding: 12px 22px; }
+}
+
+@media (max-width: 400px) {
+  .btn { padding: 8px 16px; }
+  .cube { --size: 82vw; }
+  .typewriter span { font-size: clamp(1rem, 5vw, 1.5rem); }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .top-area { top: 6%; }
+  .gallery-wrap { inset: 4vh 0 4vh 0; }
+  .gallery-stage { width: min(60vh, 480px); height: min(52vh, 360px); }
+  .cube { --size: min(55vh, 360px); }
+}
+
+/* ---------- Fancy modal fixes: solid dark card + readable body ---------- */
+.fancy-overlay { background: linear-gradient(180deg, rgba(2,4,14,0.78), rgba(4,6,22,0.9)); }
+.fancy-modal {
+  background: linear-gradient(180deg, rgba(15,18,36,0.96), rgba(10,12,26,0.96));
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.fancy-inner {
+  background: transparent;
+  padding: 22px 22px 18px;
+}
+.fancy-sub {
+  position: static !important;   /* defeat any lingering global p rule */
+  height: auto !important;
+  top: auto !important;
+  color: rgba(255,255,255,0.75);
+  font-family: 'Poppins','Inter',system-ui,sans-serif;
+  font-size: clamp(0.82rem, 2.6vw, 0.95rem);
+  margin: 0 0 14px 0;
+  text-align: left;
+  text-shadow: none;
+}
+.fancy-title { text-align: left; }
+.fancy-body { max-width: 100%; }
+.tw-modal {
+  display: block;
+  max-width: 100%;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  line-height: 1.55;
+  color: #fff;
+}
+
+/* ---------- Gallery: cube + nav buttons layout fix ---------- */
+.gallery-wrap {
+  inset: 0 !important;
+  padding: 5vh 4vw calc(env(safe-area-inset-bottom, 0px) + 3vh);
+  box-sizing: border-box;
+  justify-content: center;   /* vertically balance cube / ui / final */
+  gap: 18px;
+  overflow-y: auto;
+}
+.gallery-stage {
+  width: min(88vw, 460px);
+  height: min(88vw, 460px);      /* keep cube stage square so faces align */
+  margin-bottom: 0;
+  flex: 0 0 auto;
+}
+.cube { --size: min(72vw, 380px); }
+
+.gallery-ui {
+  position: relative;
+  z-index: 5;                    /* always above the cube's 3D face */
+  margin: 8px 0 0;
+  gap: 18px;
+}
+.gallery-ui button {
+  width: 52px; height: 52px;
+  padding: 0;
+  font-size: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+}
+
+.Lbtn {
+  position: relative !important;   /* stop overlapping the cube */
+  bottom: auto !important;
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .gallery-wrap { padding: 3vh 4vw calc(env(safe-area-inset-bottom, 0px) + 2vh); gap: 14px; }
+  .gallery-stage { width: min(82vw, 360px); height: min(82vw, 360px); }
+  .cube { --size: min(68vw, 320px); }
+  .gallery-ui button { width: 46px; height: 46px; font-size: 20px; }
+  .Lbtn { font-size: 1rem; padding: 12px 22px; }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .gallery-wrap { padding: 2vh 4vw; gap: 10px; }
+  .gallery-stage { width: min(46vh, 320px); height: min(46vh, 320px); }
+  .cube { --size: min(40vh, 280px); }
+}

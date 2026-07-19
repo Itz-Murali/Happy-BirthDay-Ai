@@ -1,0 +1,267 @@
+
+
+@font-face {
+  font-family: 'Pacifico';
+  src: url('Fonts/Pacifico.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  overflow: hidden;
+  background: #111;
+  margin: 0;
+      font-family: 'Pacifico', sans-serif;
+      display: flex;
+      align-items: center;        /* vertical center */
+      justify-content: flex-start;
+}
+.lastpage {
+  position: absolute;    /* ya fixed, agar full screen me dikhana hai */
+  top: 0;
+  font-family: 'Pacifico', sans-serif;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;     /* full page height */
+  background: transparent;      /* apne hisaab se background */
+  display: none;         /* default hidden */
+  z-index: 9999;         /* sabse upar dikhne ke liye */
+  padding: 20px;         /* thoda andar space */
+  box-sizing: border-box;
+
+  justify-content: center;  /* horizontally center */
+  align-items: center;
+  
+
+}
+
+.lastPage.show {
+  opacity: 1;
+  visibility: visible; /* visible when class added */
+  transition-delay: 0s;
+}
+/* Canvas upar hoga pehle */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+  transition: opacity 2s ease;
+}
+canvas.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Main initially hidden */
+.main-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;      /* stack items vertically */
+  align-items: center;         /* center horizontally */
+  justify-content: flex-start; /* start from top */
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 40px;           /* some space from top */
+  text-align: center;
+  background: transparent;
+  color: #fff;
+  
+
+  opacity: 0;
+  visibility: hidden;          /* hidden initially */
+  transition: opacity 2s ease, visibility 0s linear;
+}
+
+.main-content.show {
+  opacity: 1;
+  visibility: visible; /* visible when class added */
+  transition-delay: 0s;
+}
+
+/* legacy credit/footer paragraph — scope to the body direct child only,
+   otherwise it hijacks every <p> in modals and pushes them off-screen. */
+body > p {
+  margin: 0;
+  position: absolute;
+  font: 16px Verdana;
+  color: #eee;
+  height: 25px;
+  top: calc(100vh - 30px);
+  text-shadow: 0 0 2px white;
+}
+body > p a {
+  text-decoration: none;
+  color: #aaa;
+}
+body > p span { font-size: 11px; }
+body > p > a:first-of-type { font-size: 20px; }
+
+
+
+#start-btn-container {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* JS se control hoga */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 10;
+}
+
+/* CYBERPUNK NEON BUTTON */
+#start-btn {
+  --neon: #00e5ff;        /* primary glow (cyan) */
+  --accent: #ff00e6;      /* secondary glow (magenta) */
+
+  background: rgba(5, 8, 12, 0.55); /* dark, semi-glass */
+  color: #eaffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  padding: 16px 38px;
+  border: 2px solid var(--neon);
+  border-radius: 14px;
+  cursor: pointer;
+
+  /* hard neon glow + inner rim 
+  box-shadow:
+    0 0 8px var(--neon),
+    0 0 22px var(--neon),
+    0 0 2px rgba(255,255,255,0.3) inset,
+    0 6px 24px rgba(0, 229, 255, 0.18);
+  backdrop-filter: blur(6px); */
+  -webkit-backdrop-filter: blur(6px);
+
+  position: relative;
+  overflow: hidden;
+
+  /* keep your existing transitions intact */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* corner notches (no gradients, no animation) */
+#start-btn::before,
+#start-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+#start-btn::before {
+  /* cyan halo outline */
+  box-shadow: 0 0 0 2px rgba(0,229,255,0.4), 0 0 28px rgba(0,229,255,0.35);
+  mix-blend-mode: screen;
+}
+
+#start-btn::after {
+  /* magenta corner cuts */
+  border: 2px solid transparent;
+  clip-path: polygon(
+    0% 18%, 6% 18%, 6% 0%, 94% 0%, 94% 18%, 100% 18%,
+    100% 82%, 94% 82%, 94% 100%, 6% 100%, 6% 82%, 0% 82%
+  );
+  box-shadow:
+    inset 0 0 0 2px var(--accent),
+    0 0 16px var(--accent);
+  opacity: 0.75;
+}
+
+/* text glow */
+
+#start-btn .btn-text {
+	font-size: 0.8rem;
+	color: white;
+  text-shadow:
+    0 0 6px var(--neon),
+    0 0 14px var(--neon),
+    0 0 2px rgba(255,255,255,0.6);
+}
+
+/* hover: stronger dual-glow, slight lift */
+#start-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: cyan;
+  box-shadow:
+    0 0 10px var(--neon),
+    0 0 30px var(--neon),
+    0 0 20px rgba(255, 0, 230, 0.35),
+    0 10px 30px rgba(0, 229, 255, 0.25);
+  filter: saturate(1.15);
+}
+
+
+
+
+
+      .fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* taki clicks block na ho */
+  z-index: -1; /* background me dikhne ke liye */
+}
+/* unique birthday tag */
+
+
+.bday-unique {
+  width: 90%;
+  margin: 20px auto; /* center in page */
+  padding: 20px;
+  font-size: clamp(14px, 2vw, 20px); /* responsive font size */
+  line-height: 1.6;
+  text-align: center;
+  border: 4px solid transparent;
+  border-radius: 18px;
+
+  /* multicolor border */
+  background-image: 
+    linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb), 
+    linear-gradient(135deg, #ffdde1, #fcc2e0, #fddde6, #fff6f6);
+ 
+  /* cute background inside */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  color: #333;
+  font-family: 'Pacifico', cursive, sans-serif;
+}
+
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ---------- Responsive tweaks (mobile / tablet / desktop) ---------- */
+html, body { width: 100%; }
+#c { width: 100vw; height: 100vh; display: block; }
+
+@media (max-width: 900px) {
+  #start-btn { font-size: 1.05rem; padding: 14px 28px; border-radius: 12px; }
+  #start-btn .btn-text { font-size: 0.72rem; }
+}
+
+@media (max-width: 600px) {
+  #start-btn-container { top: 72%; width: 90%; }
+  #start-btn { padding: 12px 22px; border-radius: 10px; width: 100%; }
+  #start-btn .btn-text { font-size: 0.68rem; letter-spacing: 0.04em; }
+  .bday-unique { width: 94%; padding: 14px; font-size: clamp(13px, 3.6vw, 17px); }
+}
+
+@media (max-width: 400px) {
+  #start-btn { padding: 10px 16px; }
+  #start-btn .btn-text { font-size: 0.62rem; }
+}
